@@ -1,6 +1,6 @@
 import { LayoutDashboard, PieChart, Lightbulb, Wrench, HardDrive, TrendingUp, FlaskConical, Package, FileCode, Bell, Cloud } from 'lucide-react'
 
-import type { Tab } from '../App'
+import type { Tab } from '../types'
 
 interface SidebarProps {
   activeTab: Tab
