@@ -1,6 +1,6 @@
 import { LayoutDashboard, PieChart, Lightbulb, Wrench, HardDrive, TrendingUp, FlaskConical, Package, FileCode, Bell, Cloud } from 'lucide-react'
 
-export type Tab = 'dashboard' | 'breakdown' | 'recommendations' | 'tools' | 'trends' | 'simulator' | 'apps' | 'scripts' | 'alerts' | 'icloud'
+import type { Tab } from '../App'
 
 interface SidebarProps {
   activeTab: Tab
@@ -8,17 +8,17 @@ interface SidebarProps {
   isOpen: boolean
 }
 
-const menuItems = [
-  { id: 'dashboard' as Tab, label: 'Dashboard', icon: LayoutDashboard },
-  { id: 'breakdown' as Tab, label: 'Análisis', icon: PieChart },
-  { id: 'trends' as Tab, label: 'Tendencias', icon: TrendingUp },
-  { id: 'apps' as Tab, label: 'Apps', icon: Package },
-  { id: 'icloud' as Tab, label: 'iCloud', icon: Cloud },
-  { id: 'scripts' as Tab, label: 'Scripts', icon: FileCode },
-  { id: 'alerts' as Tab, label: 'Alertas', icon: Bell },
-  { id: 'recommendations' as Tab, label: 'Recomendaciones', icon: Lightbulb },
-  { id: 'simulator' as Tab, label: 'Simulador', icon: FlaskConical },
-  { id: 'tools' as Tab, label: 'Herramientas', icon: Wrench },
+const menuItems: { id: Tab; label: string; icon: any }[] = [
+  { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { id: 'breakdown', label: 'Análisis', icon: PieChart },
+  { id: 'trends', label: 'Tendencias', icon: TrendingUp },
+  { id: 'apps', label: 'Apps', icon: Package },
+  { id: 'icloud', label: 'iCloud', icon: Cloud },
+  { id: 'scripts', label: 'Scripts', icon: FileCode },
+  { id: 'alerts', label: 'Alertas', icon: Bell },
+  { id: 'recommendations', label: 'Recomendaciones', icon: Lightbulb },
+  { id: 'simulator', label: 'Simulador', icon: FlaskConical },
+  { id: 'tools', label: 'Herramientas', icon: Wrench },
 ]
 
 export default function Sidebar({ activeTab, setActiveTab, isOpen }: SidebarProps) {

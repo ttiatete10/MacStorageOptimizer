@@ -10,7 +10,8 @@ import AutoScripts from './components/AutoScripts'
 import SystemAlerts from './components/SystemAlerts'
 import ICloudManager from './components/ICloudManager'
 import Sidebar from './components/Sidebar'
-import type { Tab } from './components/Sidebar'
+
+export type Tab = 'dashboard' | 'breakdown' | 'recommendations' | 'tools' | 'trends' | 'simulator' | 'apps' | 'scripts' | 'alerts' | 'icloud'
 
 function App() {
   const [activeTab, setActiveTab] = useState<Tab>('dashboard')
@@ -50,7 +51,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex">
-      {/* Mobile Menu Button */}
       <button
         onClick={() => setSidebarOpen(!sidebarOpen)}
         className="lg:hidden fixed top-4 left-4 z-50 w-10 h-10 bg-gray-800 border border-gray-700 rounded-xl flex items-center justify-center text-white"
@@ -64,7 +64,6 @@ function App() {
         </svg>
       </button>
 
-      {/* Overlay for mobile */}
       {sidebarOpen && (
         <div
           className="lg:hidden fixed inset-0 bg-black/50 z-30"
