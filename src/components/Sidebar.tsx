@@ -1,22 +1,29 @@
-import { LayoutDashboard, PieChart, Lightbulb, Wrench, HardDrive } from 'lucide-react'
+import { LayoutDashboard, PieChart, Lightbulb, Wrench, HardDrive, TrendingUp, FlaskConical } from 'lucide-react'
 
-type Tab = 'dashboard' | 'breakdown' | 'recommendations' | 'tools'
+export type Tab = 'dashboard' | 'breakdown' | 'recommendations' | 'tools' | 'trends' | 'simulator'
 
 interface SidebarProps {
   activeTab: Tab
   setActiveTab: (tab: Tab) => void
+  isOpen: boolean
 }
 
 const menuItems = [
   { id: 'dashboard' as Tab, label: 'Dashboard', icon: LayoutDashboard },
   { id: 'breakdown' as Tab, label: 'Análisis', icon: PieChart },
+  { id: 'trends' as Tab, label: 'Tendencias', icon: TrendingUp },
   { id: 'recommendations' as Tab, label: 'Recomendaciones', icon: Lightbulb },
+  { id: 'simulator' as Tab, label: 'Simulador', icon: FlaskConical },
   { id: 'tools' as Tab, label: 'Herramientas', icon: Wrench },
 ]
 
-export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
+export default function Sidebar({ activeTab, setActiveTab, isOpen }: SidebarProps) {
   return (
-    <aside className="fixed left-0 top-0 h-full w-64 bg-gray-900/80 backdrop-blur-xl border-r border-gray-700/50 p-6 flex flex-col">
+    <aside
+      className={`fixed left-0 top-0 h-full w-64 bg-gray-900/95 backdrop-blur-xl border-r border-gray-700/50 p-6 flex flex-col z-40 transition-transform duration-300 ${
+        isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+      }`}
+    >
       <div className="flex items-center gap-3 mb-10">
         <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
           <HardDrive className="w-5 h-5 text-white" />
@@ -57,6 +64,15 @@ export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
           Apple M1 • 8GB RAM<br />
           macOS Sonoma
         </p>
+        <div className="mt-3 pt-3 border-t border-gray-700/50">
+          <div className="flex justify-between text-xs">
+            <span className="text-gray-500">Disco</span>
+            <span className="text-white">53% usado</span>
+          </div>
+          <div className="w-full bg-gray-700 rounded-full h-1.5 mt-1">
+            <div className="h-1.5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500" style={{ width: '53%' }}></div>
+          </div>
+        </div>
       </div>
     </aside>
   )

@@ -1,5 +1,6 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts'
-import { HardDrive, AlertTriangle, CheckCircle, Zap } from 'lucide-react'
+import { HardDrive, AlertTriangle, CheckCircle, Zap, TrendingUp, Shield } from 'lucide-react'
+import HealthScore from './HealthScore'
 
 const storageData = [
   { name: 'Sistema', value: 35, color: '#6366f1' },
@@ -15,63 +16,104 @@ const totalStorage = 512
 const usedStorage = 273
 const freeStorage = 239
 const percentageUsed = Math.round((usedStorage / totalStorage) * 100)
+const healthScore = 72
 
 export default function Dashboard() {
   return (
     <div className="space-y-8">
-      {/* Storage Overview Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-blue-600/20 rounded-xl flex items-center justify-center">
-              <HardDrive className="w-5 h-5 text-blue-400" />
-            </div>
-            <div>
-              <p className="text-gray-400 text-sm">Almacenamiento Total</p>
-              <p className="text-2xl font-bold text-white">{totalStorage} GB</p>
-            </div>
+      {/* Top Section: Health Score + Overview */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Health Score Card */}
+        <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6 flex flex-col items-center justify-center">
+          <div className="flex items-center gap-2 mb-4">
+            <Shield className="w-5 h-5 text-blue-400" />
+            <h3 className="text-white font-semibold">Salud del Disco</h3>
           </div>
-          <div className="w-full bg-gray-700 rounded-full h-2">
-            <div
-              className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-1000"
-              style={{ width: `${percentageUsed}%` }}
-            ></div>
-          </div>
-          <p className="text-gray-500 text-xs mt-2">{percentageUsed}% utilizado</p>
-        </div>
-
-        <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-amber-600/20 rounded-xl flex items-center justify-center">
-              <AlertTriangle className="w-5 h-5 text-amber-400" />
-            </div>
-            <div>
-              <p className="text-gray-400 text-sm">Espacio Usado</p>
-              <p className="text-2xl font-bold text-white">{usedStorage} GB</p>
-            </div>
-          </div>
-          <p className="text-gray-500 text-xs">
-            {usedStorage - 200} GB más que el mes pasado
+          <HealthScore score={healthScore} />
+          <p className="text-gray-400 text-xs mt-4 text-center">
+            Basado en espacio libre, fragmentación y rendimiento
           </p>
         </div>
 
-        <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-green-600/20 rounded-xl flex items-center justify-center">
-              <CheckCircle className="w-5 h-5 text-green-400" />
+        {/* Storage Cards */}
+        <div className="lg:col-span-2 space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-5">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 bg-blue-600/20 rounded-xl flex items-center justify-center">
+                  <HardDrive className="w-5 h-5 text-blue-400" />
+                </div>
+                <div>
+                  <p className="text-gray-400 text-xs">Almacenamiento Total</p>
+                  <p className="text-xl font-bold text-white">{totalStorage} GB</p>
+                </div>
+              </div>
+              <div className="w-full bg-gray-700 rounded-full h-2.5">
+                <div
+                  className="bg-gradient-to-r from-blue-500 to-purple-500 h-2.5 rounded-full transition-all duration-1000"
+                  style={{ width: `${percentageUsed}%` }}
+                ></div>
+              </div>
+              <div className="flex justify-between mt-2">
+                <p className="text-gray-500 text-xs">{usedStorage} GB usados</p>
+                <p className="text-gray-500 text-xs">{percentageUsed}%</p>
+              </div>
             </div>
-            <div>
-              <p className="text-gray-400 text-sm">Espacio Libre</p>
-              <p className="text-2xl font-bold text-white">{freeStorage} GB</p>
+
+            <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-5">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 bg-green-600/20 rounded-xl flex items-center justify-center">
+                  <CheckCircle className="w-5 h-5 text-green-400" />
+                </div>
+                <div>
+                  <p className="text-gray-400 text-xs">Espacio Libre</p>
+                  <p className="text-xl font-bold text-white">{freeStorage} GB</p>
+                </div>
+              </div>
+              <p className="text-green-400 text-xs flex items-center gap-1">
+                <Zap className="w-3 h-3" /> Nivel saludable (&gt;20%)
+              </p>
+              <p className="text-gray-500 text-xs mt-1">
+                Recomendado: mínimo 102 GB libres
+              </p>
             </div>
           </div>
-          <p className="text-green-400 text-xs flex items-center gap-1">
-            <Zap className="w-3 h-3" /> Nivel saludable
-          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-5">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 bg-amber-600/20 rounded-xl flex items-center justify-center">
+                  <TrendingUp className="w-5 h-5 text-amber-400" />
+                </div>
+                <div>
+                  <p className="text-gray-400 text-xs">Crecimiento Mensual</p>
+                  <p className="text-xl font-bold text-white">+11.3 GB</p>
+                </div>
+              </div>
+              <p className="text-gray-500 text-xs">
+                Promedio últimos 8 meses
+              </p>
+            </div>
+
+            <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-5">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 bg-red-600/20 rounded-xl flex items-center justify-center">
+                  <AlertTriangle className="w-5 h-5 text-red-400" />
+                </div>
+                <div>
+                  <p className="text-gray-400 text-xs">Recuperable Ahora</p>
+                  <p className="text-xl font-bold text-white">49.5 GB</p>
+                </div>
+              </div>
+              <p className="text-amber-400 text-xs flex items-center gap-1">
+                <Zap className="w-3 h-3" /> 8 acciones disponibles
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Main Chart Section */}
+      {/* Chart Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6">
           <h3 className="text-white font-semibold text-lg mb-4">Distribución del Almacenamiento</h3>
@@ -111,7 +153,7 @@ export default function Dashboard() {
             {storageData.slice(0, 6).map((item) => (
               <div key={item.name} className="flex items-center gap-3">
                 <div
-                  className="w-3 h-3 rounded-full"
+                  className="w-3 h-3 rounded-full flex-shrink-0"
                   style={{ backgroundColor: item.color }}
                 ></div>
                 <span className="text-gray-300 text-sm flex-1">{item.name}</span>
@@ -134,7 +176,7 @@ export default function Dashboard() {
       {/* Quick Actions */}
       <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6">
         <h3 className="text-white font-semibold text-lg mb-4">Acciones Rápidas</h3>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
           {[
             { label: 'Limpiar Caché', size: '28 GB', icon: '🧹', color: 'from-red-500/20 to-orange-500/20' },
             { label: 'Archivos Duplicados', size: '12 GB', icon: '📋', color: 'from-blue-500/20 to-cyan-500/20' },
@@ -149,6 +191,25 @@ export default function Dashboard() {
               <p className="text-white text-sm font-medium mt-2">{action.label}</p>
               <p className="text-gray-400 text-xs">{action.size} recuperables</p>
             </button>
+          ))}
+        </div>
+      </div>
+
+      {/* SSD Info */}
+      <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6">
+        <h3 className="text-white font-semibold text-lg mb-4">Información del SSD</h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {[
+            { label: 'Tipo', value: 'Apple SSD', sub: 'NVMe PCIe' },
+            { label: 'Capacidad', value: '512 GB', sub: 'APFS Encriptado' },
+            { label: 'Temperatura', value: '38°C', sub: 'Normal' },
+            { label: 'Vida Útil', value: '94%', sub: '~6 años restantes' },
+          ].map((info) => (
+            <div key={info.label} className="text-center p-3 bg-gray-900/50 rounded-xl border border-gray-700/30">
+              <p className="text-gray-500 text-xs">{info.label}</p>
+              <p className="text-white font-bold text-lg mt-1">{info.value}</p>
+              <p className="text-gray-400 text-xs mt-0.5">{info.sub}</p>
+            </div>
           ))}
         </div>
       </div>
