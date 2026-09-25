@@ -5,6 +5,10 @@ import Recommendations from './components/Recommendations'
 import CleanupTools from './components/CleanupTools'
 import TrendChart from './components/TrendChart'
 import CleanupComparison from './components/CleanupComparison'
+import AppManager from './components/AppManager'
+import AutoScripts from './components/AutoScripts'
+import SystemAlerts from './components/SystemAlerts'
+import ICloudManager from './components/ICloudManager'
 import Sidebar from './components/Sidebar'
 import type { Tab } from './components/Sidebar'
 
@@ -18,14 +22,22 @@ function App() {
         return <Dashboard />
       case 'breakdown':
         return <StorageBreakdown />
-      case 'recommendations':
-        return <Recommendations />
-      case 'tools':
-        return <CleanupTools />
       case 'trends':
         return <TrendChart />
+      case 'recommendations':
+        return <Recommendations />
       case 'simulator':
         return <CleanupComparison />
+      case 'apps':
+        return <AppManager />
+      case 'scripts':
+        return <AutoScripts />
+      case 'alerts':
+        return <SystemAlerts />
+      case 'icloud':
+        return <ICloudManager />
+      case 'tools':
+        return <CleanupTools />
       default:
         return <Dashboard />
     }
