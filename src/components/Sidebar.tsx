@@ -10,7 +10,7 @@ interface SidebarProps {
 
 const menuItems: { id: Tab; label: string; icon: any }[] = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { id: 'breakdown', label: 'Análisis', icon: PieChart },
+  { id: 'analysis', label: 'Análisis', icon: PieChart },
   { id: 'trends', label: 'Tendencias', icon: TrendingUp },
   { id: 'apps', label: 'Apps', icon: Package },
   { id: 'icloud', label: 'iCloud', icon: Cloud },

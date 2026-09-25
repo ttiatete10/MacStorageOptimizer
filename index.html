@@ -11,62 +11,156 @@
       background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
       color: white;
       min-height: 100vh;
-      padding: 2rem;
     }
-    .container { max-width: 1200px; margin: 0 auto; }
-    h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-    .subtitle { color: #9ca3af; margin-bottom: 2rem; }
+    .app { display: flex; min-height: 100vh; }
+    
+    /* Sidebar */
+    .sidebar {
+      width: 256px;
+      background: rgba(17, 24, 39, 0.95);
+      backdrop-filter: blur(12px);
+      border-right: 1px solid rgba(75, 85, 99, 0.5);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .sidebar-logo {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+    .sidebar-title { font-weight: bold; font-size: 0.875rem; }
+    .sidebar-subtitle { color: #6b7280; font-size: 0.75rem; }
+    
+    .nav { flex: 1; }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      border-radius: 0.75rem;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: #9ca3af;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    .nav-item:hover { background: rgba(75, 85, 99, 0.5); color: white; }
+    .nav-item.active {
+      background: rgba(59, 130, 246, 0.2);
+      color: #60a5fa;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+    .nav-icon { font-size: 1.25rem; }
+    
+    .sidebar-footer {
+      margin-top: auto;
+      padding: 1rem;
+      background: rgba(31, 41, 55, 0.5);
+      border: 1px solid rgba(75, 85, 99, 0.5);
+      border-radius: 0.75rem;
+    }
+    .status { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    .status-text { color: #9ca3af; font-size: 0.75rem; }
+    .info-text { color: #6b7280; font-size: 0.75rem; }
+    
+    /* Main content */
+    .main { flex: 1; margin-left: 256px; padding: 2rem; }
+    .header { margin-bottom: 2rem; }
+    .title { font-size: 2rem; font-weight: bold; margin-bottom: 0.5rem; }
+    .subtitle { color: #9ca3af; }
+    
+    /* Cards */
     .card {
       background: rgba(31, 41, 55, 0.5);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(75, 85, 99, 0.5);
       border-radius: 1rem;
-      padding: 2rem;
-      margin-bottom: 2rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
     }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .card-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; }
+    
+    /* Grid */
+    .grid { display: grid; gap: 1rem; }
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    
+    /* Stat card */
     .stat-card {
       background: rgba(17, 24, 39, 0.5);
       padding: 1.5rem;
       border-radius: 0.75rem;
       border: 1px solid rgba(75, 85, 99, 0.3);
     }
-    .stat-label { color: #9ca3af; font-size: 0.875rem; }
-    .stat-value { font-size: 2rem; font-weight: bold; margin: 0.25rem 0; }
-    .progress-bar {
-      width: 100%;
-      height: 8px;
-      background: #374151;
-      border-radius: 4px;
-      margin-top: 0.5rem;
-      overflow: hidden;
+    .stat-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+    .stat-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
     }
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-      border-radius: 4px;
-    }
-    .stat-note { color: #6b7280; font-size: 0.75rem; margin-top: 0.5rem; }
-    .green { color: #10b981; }
-    .amber { color: #f59e0b; }
-    h2 { font-size: 1.5rem; margin-bottom: 1rem; }
-    h3 { font-size: 1.25rem; margin-bottom: 1rem; }
-    .actions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .stat-icon.blue { background: rgba(59, 130, 246, 0.2); }
+    .stat-icon.green { background: rgba(16, 185, 129, 0.2); }
+    .stat-icon.amber { background: rgba(245, 158, 11, 0.2); }
+    .stat-icon.red { background: rgba(239, 68, 68, 0.2); }
+    .stat-label { color: #9ca3af; font-size: 0.75rem; }
+    .stat-value { font-size: 1.75rem; font-weight: bold; }
+    .stat-note { font-size: 0.75rem; margin-top: 0.5rem; }
+    .text-green { color: #10b981; }
+    .text-amber { color: #f59e0b; }
+    .text-red { color: #ef4444; }
+    .text-gray { color: #6b7280; }
+    
+    /* Progress bar */
+    .progress { width: 100%; height: 8px; background: #374151; border-radius: 4px; margin-top: 0.5rem; overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 4px; transition: width 0.3s; }
+    .progress-blue { background: linear-gradient(90deg, #3b82f6, #8b5cf6); }
+    
+    /* Action buttons */
     .action-btn {
       background: rgba(17, 24, 39, 0.5);
       border: 1px solid rgba(75, 85, 99, 0.3);
       border-radius: 0.75rem;
       padding: 1rem;
-      text-align: left;
       cursor: pointer;
-      transition: transform 0.2s;
+      transition: all 0.2s;
+      text-align: left;
       color: white;
     }
-    .action-btn:hover { transform: scale(1.05); }
+    .action-btn:hover { transform: scale(1.05); border-color: rgba(75, 85, 99, 0.6); }
     .action-icon { font-size: 1.5rem; }
-    .action-label { margin-top: 0.5rem; font-weight: 500; }
+    .action-label { font-weight: 500; margin-top: 0.5rem; }
     .action-size { color: #9ca3af; font-size: 0.75rem; }
-    .rec-list { display: flex; flex-direction: column; gap: 1rem; }
+    
+    /* Recommendation items */
     .rec-item {
       background: rgba(17, 24, 39, 0.5);
       border: 1px solid rgba(75, 85, 99, 0.3);
@@ -75,111 +169,413 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 0.75rem;
     }
-    .rec-title { font-weight: 500; }
+    .rec-title { font-weight: 500; margin-bottom: 0.25rem; }
     .rec-priority { color: #9ca3af; font-size: 0.875rem; }
-    .rec-size { font-size: 1.5rem; font-weight: bold; text-align: right; }
-    .rec-note { color: #9ca3af; font-size: 0.75rem; }
+    .rec-size { font-size: 1.5rem; font-weight: bold; }
+    .rec-note { color: #9ca3af; font-size: 0.75rem; text-align: right; }
+    
+    /* Health score */
+    .health-score {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .score-circle {
+      width: 180px;
+      height: 180px;
+      position: relative;
+      margin-bottom: 1rem;
+    }
+    .score-circle svg { transform: rotate(-90deg); }
+    .score-circle circle {
+      fill: none;
+      stroke-width: 10;
+      stroke-linecap: round;
+    }
+    .score-bg { stroke: #374151; }
+    .score-progress { stroke: #f59e0b; transition: stroke-dashoffset 1s ease-out; }
+    .score-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    .score-value { font-size: 2.5rem; font-weight: bold; color: #f59e0b; }
+    .score-max { color: #9ca3af; font-size: 0.875rem; }
+    .score-label {
+      padding: 0.25rem 0.75rem;
+      background: rgba(245, 158, 11, 0.2);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 1rem;
+      color: #f59e0b;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    
+    /* Mobile menu */
+    .mobile-menu-btn {
+      display: none;
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      z-index: 50;
+      padding: 0.5rem;
+      background: #1f2937;
+      border: 1px solid #374151;
+      border-radius: 0.5rem;
+      color: white;
+      cursor: pointer;
+    }
+    
+    @media (max-width: 1024px) {
+      .sidebar { transform: translateX(-100%); transition: transform 0.3s; z-index: 40; }
+      .sidebar.open { transform: translateX(0); }
+      .main { margin-left: 0; }
+      .mobile-menu-btn { display: block; }
+    }
+    
+    /* Hidden sections */
+    .section { display: none; }
+    .section.active { display: block; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>💻 MacStorage Optimizer</h1>
-    <p class="subtitle">MacBook Air M1 • 512GB SSD • macOS 2020</p>
-
-    <div class="card">
-      <h2>📊 Dashboard</h2>
-      <div class="grid">
-        <div class="stat-card">
-          <p class="stat-label">Almacenamiento Total</p>
-          <p class="stat-value">512 GB</p>
-          <div class="progress-bar">
-            <div class="progress-fill" style="width: 53%"></div>
-          </div>
-          <p class="stat-note">53% utilizado</p>
-        </div>
-        <div class="stat-card">
-          <p class="stat-label">Espacio Libre</p>
-          <p class="stat-value green">239 GB</p>
-          <p class="stat-note green">✓ Nivel saludable</p>
-        </div>
-        <div class="stat-card">
-          <p class="stat-label">Recuperable</p>
-          <p class="stat-value amber">49.5 GB</p>
-          <p class="stat-note amber">⚡ 8 acciones disponibles</p>
+  <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
+  
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">💾</div>
+        <div>
+          <div class="sidebar-title">MacStorage</div>
+          <div class="sidebar-subtitle">Optimizer Pro</div>
         </div>
       </div>
-
-      <h3>🧹 Acciones Rápidas</h3>
-      <div class="actions-grid">
-        <button class="action-btn">
-          <span class="action-icon">🧹</span>
-          <p class="action-label">Limpiar Caché</p>
-          <p class="action-size">28 GB recuperables</p>
-        </button>
-        <button class="action-btn">
-          <span class="action-icon">📋</span>
-          <p class="action-label">Duplicados</p>
-          <p class="action-size">12 GB recuperables</p>
-        </button>
-        <button class="action-btn">
-          <span class="action-icon">🗑️</span>
-          <p class="action-label">Papelera</p>
-          <p class="action-size">5.2 GB recuperables</p>
-        </button>
-        <button class="action-btn">
-          <span class="action-icon">📄</span>
-          <p class="action-label">Logs</p>
-          <p class="action-size">3.8 GB recuperables</p>
-        </button>
+      
+      <nav class="nav">
+        <div class="nav-item active" onclick="showSection('dashboard', this)">
+          <span class="nav-icon">📊</span>
+          <span>Dashboard</span>
+        </div>
+        <div class="nav-item" onclick="showSection('analysis', this)">
+          <span class="nav-icon">📈</span>
+          <span>Análisis</span>
+        </div>
+        <div class="nav-item" onclick="showSection('trends', this)">
+          <span class="nav-icon">📉</span>
+          <span>Tendencias</span>
+        </div>
+        <div class="nav-item" onclick="showSection('apps', this)">
+          <span class="nav-icon">📦</span>
+          <span>Apps</span>
+        </div>
+        <div class="nav-item" onclick="showSection('icloud', this)">
+          <span class="nav-icon">☁️</span>
+          <span>iCloud</span>
+        </div>
+        <div class="nav-item" onclick="showSection('scripts', this)">
+          <span class="nav-icon">📜</span>
+          <span>Scripts</span>
+        </div>
+        <div class="nav-item" onclick="showSection('alerts', this)">
+          <span class="nav-icon">🔔</span>
+          <span>Alertas</span>
+        </div>
+        <div class="nav-item" onclick="showSection('recommendations', this)">
+          <span class="nav-icon">💡</span>
+          <span>Recomendaciones</span>
+        </div>
+        <div class="nav-item" onclick="showSection('simulator', this)">
+          <span class="nav-icon">🧪</span>
+          <span>Simulador</span>
+        </div>
+        <div class="nav-item" onclick="showSection('tools', this)">
+          <span class="nav-icon">🔧</span>
+          <span>Herramientas</span>
+        </div>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="status">
+          <div class="status-dot"></div>
+          <span class="status-text">Sistema Activo</span>
+        </div>
+        <div class="info-text">Apple M1 • 8GB RAM<br>macOS Sonoma</div>
       </div>
-    </div>
-
-    <div class="card">
-      <h2>💡 Recomendaciones</h2>
-      <div class="rec-list">
-        <div class="rec-item">
-          <div>
-            <p class="rec-title">Limpiar Caché del Sistema</p>
-            <p class="rec-priority">Prioridad: Alta</p>
+    </aside>
+    
+    <!-- Main content -->
+    <main class="main">
+      <header class="header">
+        <h1 class="title">💻 MacStorage Optimizer</h1>
+        <p class="subtitle">MacBook Air M1 • 512GB SSD • macOS 2020</p>
+      </header>
+      
+      <!-- Dashboard Section -->
+      <div class="section active" id="dashboard">
+        <div class="grid grid-3">
+          <!-- Health Score -->
+          <div class="card">
+            <div class="health-score">
+              <h3 class="card-title">🛡️ Salud del Disco</h3>
+              <div class="score-circle">
+                <svg width="180" height="180">
+                  <circle class="score-bg" cx="90" cy="90" r="80"></circle>
+                  <circle class="score-progress" cx="90" cy="90" r="80"
+                    stroke-dasharray="502.65"
+                    stroke-dashoffset="140.74"></circle>
+                </svg>
+                <div class="score-text">
+                  <div class="score-value">72</div>
+                  <div class="score-max">/ 100</div>
+                </div>
+              </div>
+              <div class="score-label">Bueno</div>
+              <p class="text-gray" style="margin-top: 1rem; font-size: 0.75rem; text-align: center;">
+                Basado en espacio libre, fragmentación y rendimiento
+              </p>
+            </div>
           </div>
-          <div>
-            <p class="rec-size">28 GB</p>
-            <p class="rec-note">recuperables</p>
+          
+          <!-- Stats -->
+          <div class="grid" style="grid-template-columns: 1fr; gap: 1rem;">
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-icon blue">💾</div>
+                <div>
+                  <div class="stat-label">Almacenamiento Total</div>
+                  <div class="stat-value">512 GB</div>
+                </div>
+              </div>
+              <div class="progress">
+                <div class="progress-fill progress-blue" style="width: 53%"></div>
+              </div>
+              <div class="text-gray" style="font-size: 0.75rem; margin-top: 0.5rem;">53% utilizado</div>
+            </div>
+            
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-icon green">✓</div>
+                <div>
+                  <div class="stat-label">Espacio Libre</div>
+                  <div class="stat-value text-green">239 GB</div>
+                </div>
+              </div>
+              <div class="text-green" style="font-size: 0.75rem;">⚡ Nivel saludable (&gt;20%)</div>
+            </div>
+          </div>
+          
+          <div class="grid" style="grid-template-columns: 1fr; gap: 1rem;">
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-icon amber">📈</div>
+                <div>
+                  <div class="stat-label">Crecimiento Mensual</div>
+                  <div class="stat-value">+11.3 GB</div>
+                </div>
+              </div>
+              <div class="text-gray" style="font-size: 0.75rem;">Promedio últimos 8 meses</div>
+            </div>
+            
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-icon red">⚠️</div>
+                <div>
+                  <div class="stat-label">Recuperable Ahora</div>
+                  <div class="stat-value text-amber">49.5 GB</div>
+                </div>
+              </div>
+              <div class="text-amber" style="font-size: 0.75rem;">⚡ 8 acciones disponibles</div>
+            </div>
           </div>
         </div>
-        <div class="rec-item">
-          <div>
-            <p class="rec-title">Eliminar node_modules</p>
-            <p class="rec-priority">Prioridad: Alta</p>
-          </div>
-          <div>
-            <p class="rec-size">15 GB</p>
-            <p class="rec-note">recuperables</p>
+        
+        <!-- Quick Actions -->
+        <div class="card">
+          <h3 class="card-title">🧹 Acciones Rápidas</h3>
+          <div class="grid grid-4">
+            <button class="action-btn">
+              <div class="action-icon">🧹</div>
+              <div class="action-label">Limpiar Caché</div>
+              <div class="action-size">28 GB recuperables</div>
+            </button>
+            <button class="action-btn">
+              <div class="action-icon">📋</div>
+              <div class="action-label">Duplicados</div>
+              <div class="action-size">12 GB recuperables</div>
+            </button>
+            <button class="action-btn">
+              <div class="action-icon">🗑️</div>
+              <div class="action-label">Papelera</div>
+              <div class="action-size">5.2 GB recuperables</div>
+            </button>
+            <button class="action-btn">
+              <div class="action-icon">📄</div>
+              <div class="action-label">Logs</div>
+              <div class="action-size">3.8 GB recuperables</div>
+            </button>
           </div>
         </div>
-        <div class="rec-item">
-          <div>
-            <p class="rec-title">Optimizar Fotos</p>
-            <p class="rec-priority">Prioridad: Media</p>
-          </div>
-          <div>
-            <p class="rec-size">20 GB</p>
-            <p class="rec-note">recuperables</p>
-          </div>
-        </div>
-        <div class="rec-item">
-          <div>
-            <p class="rec-title">Limpiar Xcode</p>
-            <p class="rec-priority">Prioridad: Alta</p>
-          </div>
-          <div>
-            <p class="rec-size">8 GB</p>
-            <p class="rec-note">recuperables</p>
+        
+        <!-- SSD Info -->
+        <div class="card">
+          <h3 class="card-title">💾 Información del SSD</h3>
+          <div class="grid grid-4">
+            <div class="stat-card" style="text-align: center;">
+              <div class="text-gray" style="font-size: 0.75rem;">Tipo</div>
+              <div class="stat-value" style="font-size: 1.25rem;">Apple SSD</div>
+              <div class="text-gray" style="font-size: 0.75rem;">NVMe PCIe</div>
+            </div>
+            <div class="stat-card" style="text-align: center;">
+              <div class="text-gray" style="font-size: 0.75rem;">Capacidad</div>
+              <div class="stat-value" style="font-size: 1.25rem;">512 GB</div>
+              <div class="text-gray" style="font-size: 0.75rem;">APFS Encriptado</div>
+            </div>
+            <div class="stat-card" style="text-align: center;">
+              <div class="text-gray" style="font-size: 0.75rem;">Temperatura</div>
+              <div class="stat-value" style="font-size: 1.25rem;">38°C</div>
+              <div class="text-gray" style="font-size: 0.75rem;">Normal</div>
+            </div>
+            <div class="stat-card" style="text-align: center;">
+              <div class="text-gray" style="font-size: 0.75rem;">Vida Útil</div>
+              <div class="stat-value" style="font-size: 1.25rem;">94%</div>
+              <div class="text-gray" style="font-size: 0.75rem;">~6 años restantes</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      
+      <!-- Other sections (placeholders) -->
+      <div class="section" id="analysis">
+        <div class="card">
+          <h3 class="card-title">📈 Análisis Detallado</h3>
+          <p class="text-gray">Desglose por categorías de almacenamiento</p>
+        </div>
+      </div>
+      
+      <div class="section" id="trends">
+        <div class="card">
+          <h3 class="card-title">📉 Tendencias</h3>
+          <p class="text-gray">Evolución mensual y predicciones</p>
+        </div>
+      </div>
+      
+      <div class="section" id="apps">
+        <div class="card">
+          <h3 class="card-title">📦 Gestor de Apps</h3>
+          <p class="text-gray">Aplicaciones instaladas y alternativas ligeras</p>
+        </div>
+      </div>
+      
+      <div class="section" id="icloud">
+        <div class="card">
+          <h3 class="card-title">☁️ Gestor iCloud</h3>
+          <p class="text-gray">Decide qué mantener en Mac vs nube</p>
+        </div>
+      </div>
+      
+      <div class="section" id="scripts">
+        <div class="card">
+          <h3 class="card-title">📜 Scripts Automáticos</h3>
+          <p class="text-gray">Scripts bash listos para ejecutar en Terminal</p>
+        </div>
+      </div>
+      
+      <div class="section" id="alerts">
+        <div class="card">
+          <h3 class="card-title">🔔 Sistema de Alertas</h3>
+          <p class="text-gray">Notificaciones y umbrales configurables</p>
+        </div>
+      </div>
+      
+      <div class="section" id="recommendations">
+        <div class="card">
+          <h3 class="card-title">💡 Recomendaciones</h3>
+          <div class="rec-item">
+            <div>
+              <div class="rec-title">Limpiar Caché del Sistema</div>
+              <div class="rec-priority">Prioridad: Alta</div>
+            </div>
+            <div>
+              <div class="rec-size">28 GB</div>
+              <div class="rec-note">recuperables</div>
+            </div>
+          </div>
+          <div class="rec-item">
+            <div>
+              <div class="rec-title">Eliminar node_modules</div>
+              <div class="rec-priority">Prioridad: Alta</div>
+            </div>
+            <div>
+              <div class="rec-size">15 GB</div>
+              <div class="rec-note">recuperables</div>
+            </div>
+          </div>
+          <div class="rec-item">
+            <div>
+              <div class="rec-title">Optimizar Fotos</div>
+              <div class="rec-priority">Prioridad: Media</div>
+            </div>
+            <div>
+              <div class="rec-size">20 GB</div>
+              <div class="rec-note">recuperables</div>
+            </div>
+          </div>
+          <div class="rec-item">
+            <div>
+              <div class="rec-title">Limpiar Xcode</div>
+              <div class="rec-priority">Prioridad: Alta</div>
+            </div>
+            <div>
+              <div class="rec-size">8 GB</div>
+              <div class="rec-note">recuperables</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="section" id="simulator">
+        <div class="card">
+          <h3 class="card-title">🧪 Simulador de Limpieza</h3>
+          <p class="text-gray">Compara antes/después de limpieza</p>
+        </div>
+      </div>
+      
+      <div class="section" id="tools">
+        <div class="card">
+          <h3 class="card-title">🔧 Herramientas</h3>
+          <p class="text-gray">Comandos útiles y calculadora</p>
+        </div>
+      </div>
+    </main>
   </div>
+  
+  <script>
+    function showSection(sectionId, navItem) {
+      // Hide all sections
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      // Show selected section
+      document.getElementById(sectionId).classList.add('active');
+      
+      // Update nav
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      navItem.classList.add('active');
+      
+      // Close sidebar on mobile
+      if (window.innerWidth <= 1024) {
+        document.getElementById('sidebar').classList.remove('open');
+      }
+    }
+    
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+    }
+  </script>
 </body>
 </html>
