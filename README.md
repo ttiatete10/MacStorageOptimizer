@@ -1,0 +1,2 @@
+# MacStorageOptimizer
+Optimización Almacenamiento MacBook
